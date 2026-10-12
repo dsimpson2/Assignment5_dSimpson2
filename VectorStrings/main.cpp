@@ -139,7 +139,7 @@ int main(int argc, char *argv[])
   for (const Pixel &pixel : pixel_list)
   {
     output_file << pixel.x << ',' << pixel.y << ',' << pixel.r << ','
-                << pixel.g << ',' << pixel.b << '\n';
+                << pixel.g << ',' << pixel.b << '\n'; // Write the pixel data to the output file in the specified format
   }
 
   return 0;
