@@ -5,9 +5,8 @@
 #include <vector>
 #include <algorithm>
 
-// ---------------------------------------------------------
+
 // Calculate average RGB values
-// ---------------------------------------------------------
 void average_colors(std::vector<Pixel> &pixel_list)
 {
     if (pixel_list.empty())
@@ -34,10 +33,8 @@ void average_colors(std::vector<Pixel> &pixel_list)
     std::cout << "Average blue:  " << b_total / count << "\n";
 }
 
-// ---------------------------------------------------------
 // Flip pixels vertically
-// ---------------------------------------------------------
-void flip_vertically(std::vector<Pixel> &pixel_list)
+void flip_vertically(std::vector<Pixel> &pixel_list) // Function to flip the pixels vertically
 {
     if (pixel_list.empty())
         return;
@@ -58,7 +55,7 @@ void flip_vertically(std::vector<Pixel> &pixel_list)
         p.y = min_y + max_y - p.y;
     }
 
-    // Sort pixels again (simple student version)
+    // Sort pixels again by x and then by y to maintain order
     std::sort(pixel_list.begin(), pixel_list.end(),
               [](const Pixel &a, const Pixel &b)
               {
@@ -67,18 +64,15 @@ void flip_vertically(std::vector<Pixel> &pixel_list)
               });
 }
 
-// ---------------------------------------------------------
-// Main program
-// ---------------------------------------------------------
-int main(int argc, char *argv[])
+int main(int argc, char *argv[]) // Main function to read pixel data from a file, process it, and write the output to a new file
 {
-    if (argc != 2)
+    if (argc != 2) // Check if the correct number of command-line arguments is provided
     {
-        std::cout << "Usage: " << argv[0] << " <input-file>\n";
+        std::cout << "Usage: " << argv[0] << " <input-file>\n"; // Print usage message if the number of arguments is incorrect
         return 1;
     }
 
-    std::ifstream input(argv[1]);
+    std::ifstream input(argv[1]); // Open the input file specified in the command-line arguments
     if (!input.is_open())
     {
         std::cout << "Could not open input file.\n";
@@ -89,7 +83,7 @@ int main(int argc, char *argv[])
     std::string line;
     int line_number = 0;
 
-    while (std::getline(input, line))
+    while (std::getline(input, line)) // Read each line from the input file
     {
         line_number++;
 
@@ -138,7 +132,7 @@ int main(int argc, char *argv[])
     for (const Pixel &p : pixel_list)
     {
         output << p.x << "," << p.y << ","
-               << p.r << "," << p.g << "," << p.b << "\n";
+               << p.r << "," << p.g << "," << p.b << "\n"; // Write each pixel's data to the output file
     }
 
     return 0;
